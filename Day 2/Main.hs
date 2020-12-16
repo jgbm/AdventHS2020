@@ -21,7 +21,7 @@ parse = evalState (do lows <- split isDigit
                        put (drop n xs)
                        return (take n xs)
 
-countPassing p = length . filter id . map p
+countPassing p = length . filter p
 
 part1 (low, high, c, cs) = n >= low && n <= high
     where n = length (filter (c ==) cs)

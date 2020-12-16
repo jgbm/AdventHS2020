@@ -2,11 +2,9 @@ module Main where
 
 import System.Environment
 
-tree right down s n
-    | n `mod` down == 0 && s !! (right * (n `div` down) `mod` length s) == '#' = 1
-    | otherwise                                                                = 0
+tree right down (s, n) = n `mod` down == 0 && s !! (right * (n `div` down) `mod` length s) == '#'
 
-trees right down ss = sum [tree right down s n | (s, n) <- zip ss [0..]]
+trees right down ss = length (filter (tree right down) (zip ss [0..]))
 
 main = do s <- readFile . head =<< getArgs
           let ss = lines s
